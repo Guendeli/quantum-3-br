@@ -397,6 +397,11 @@ MonoBehaviour:
     SystemName: 
     StartDisabled: 0
     Children: []
+  - SystemType:
+      AssemblyQualifiedName: Quantum.CharacterMovableSystem, Quantum.Simulation
+    SystemName: 
+    StartDisabled: 0
+    Children: []
 --- !u!114 &8481954107563603220
 MonoBehaviour:
   m_ObjectHideFlags: 0
