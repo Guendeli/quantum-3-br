@@ -1,8 +1,16 @@
+/*
+    Player Link component
+    Player: reference to the player entity
+*/
 component PlayerLink
 {
     PlayerRef Player;
 }
 
+/*
+    Input component
+    Direction: input direction
+*/
 input
 {
     FPVector2 Direction;
