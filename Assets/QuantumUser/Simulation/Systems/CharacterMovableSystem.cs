@@ -45,11 +45,10 @@ namespace Quantum
             
             f.Add(playerEntity, playerLink);
             
-            // TODO: use KCCSettings.init instead of setting the component values directly
+            // TODO: use KCCSettings.init() instead of setting the component values directly
             KCC* kcc = f.Unsafe.GetPointer<KCC>(playerEntity);
             KCCSettings settings = f.FindAsset(kcc->Settings);
-            kcc->Acceleration = settings.Acceleration;
-            kcc->MaxSpeed = settings.BaseSpeed;
+            settings.Init(ref *kcc);
         }
     }
 }
