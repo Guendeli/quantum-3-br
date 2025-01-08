@@ -9,7 +9,7 @@ namespace Quantum
     /// KCC doc: https://doc.photonengine.com/quantum/current/manual/physics/kcc
     /// </summary>
     [Preserve]
-    public unsafe class CharacterMovableSystem : SystemMainThreadFilter<CharacterMovableSystem.Filter>, ISignalOnPlayerAdded
+    public unsafe class CharacterMovableSystem : SystemMainThreadFilter<CharacterMovableSystem.Filter>
     {
         public override void Update(Frame f, ref Filter filter)
         {
@@ -32,23 +32,6 @@ namespace Quantum
             public EntityRef Entity;
             public KCC* KCC;
             public PlayerLink* PlayerLink;
-        }
-
-        public void OnPlayerAdded(Frame f, PlayerRef player, bool firstTime)
-        {
-            RuntimePlayer playerData = f.GetPlayerData(player);
-            EntityRef playerEntity = f.Create(playerData.PlayerAvatar);
-            PlayerLink playerLink = new PlayerLink()
-            {
-                Player = player
-            };
-            
-            f.Add(playerEntity, playerLink);
-            
-            // TODO: use KCCSettings.init() instead of setting the component values directly
-            KCC* kcc = f.Unsafe.GetPointer<KCC>(playerEntity);
-            KCCSettings settings = f.FindAsset(kcc->Settings);
-            settings.Init(ref *kcc);
         }
     }
 }
