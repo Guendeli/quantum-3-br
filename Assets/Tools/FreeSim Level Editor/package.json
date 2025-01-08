@@ -1,0 +1,12 @@
+
+{
+	"name": "com.guendeli.led",
+	"displayName": "FreeSim Level Editor",
+	"version": "1.0",
+	"unity": "2021.3.17f",
+	"description": "Like playing the sims, but the furniture is free",
+	"keywords": ["level", "editor"],
+	"category": "Editor",
+	"dependencies": {
+	}
+}
