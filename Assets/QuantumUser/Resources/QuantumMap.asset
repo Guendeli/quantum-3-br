@@ -76,7 +76,7 @@ MonoBehaviour:
         RawValue: 0
     SmoothSphereMeshCollisions: 0
     StaticData:
-      Name: MeshStaticCollider
+      Name: Ground
       Tag: Untagged
       Layer: 8
       Asset:

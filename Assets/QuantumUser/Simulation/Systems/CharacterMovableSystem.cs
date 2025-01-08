@@ -14,6 +14,18 @@ namespace Quantum
         public override void Update(Frame f, ref Filter filter)
         {
             Input* playerInput = f.GetPlayerInput(filter.PlayerLink->Player);
+            MovePlayer(f, filter, playerInput);
+            RotatePlayer(f, filter, playerInput);
+        }
+
+        private void RotatePlayer(Frame frame, Filter filter, Input* playerInput)
+        {
+            FPVector2 direction = playerInput->MousePosition - filter.Transform->Position;
+            filter.Transform->Rotation = FPVector2.RadiansSigned(FPVector2.Up, direction);
+        }
+
+        private static void MovePlayer(Frame f, Filter filter, Input* playerInput)
+        {
             FPVector2 direction = playerInput->Direction;
             
             // cheat check
@@ -32,6 +44,7 @@ namespace Quantum
             public EntityRef Entity;
             public KCC* KCC;
             public PlayerLink* PlayerLink;
+            public Transform2D* Transform;
         }
     }
 }
