@@ -4,8 +4,9 @@ namespace Quantum
     using UnityEngine.Scripting;
 
     /// <summary>
-    /// System that moves all entities with CharacterController components,
+    /// System that moves all entities with KCC (Kinematic Character Controller) components,
     /// Also instantiate default player when a player is added to the room.
+    /// KCC doc: https://doc.photonengine.com/quantum/current/manual/physics/kcc
     /// </summary>
     [Preserve]
     public unsafe class CharacterMovableSystem : SystemMainThreadFilter<CharacterMovableSystem.Filter>, ISignalOnPlayerAdded
@@ -13,21 +14,23 @@ namespace Quantum
         public override void Update(Frame f, ref Filter filter)
         {
             Input* playerInput = f.GetPlayerInput(filter.PlayerLink->Player);
-            FPVector3 direction = playerInput->Direction.XOY;
+            FPVector2 direction = playerInput->Direction;
             
             // cheat check
             if (direction.Magnitude > 1)
             {
                 direction = direction.Normalized;
             }
+
+            KCCSettings kccSetting = f.FindAsset(filter.KCC->Settings);
             
-            filter.CharacterController3D->Move(f, filter.Entity, direction);
+            kccSetting.Move(f, filter.Entity, direction);
         }
 
         public struct Filter
         {
             public EntityRef Entity;
-            public CharacterController3D* CharacterController3D;
+            public KCC* KCC;
             public PlayerLink* PlayerLink;
         }
 
@@ -41,6 +44,12 @@ namespace Quantum
             };
             
             f.Add(playerEntity, playerLink);
+            
+            // TODO: use KCCSettings.init instead of setting the component values directly
+            KCC* kcc = f.Unsafe.GetPointer<KCC>(playerEntity);
+            KCCSettings settings = f.FindAsset(kcc->Settings);
+            kcc->Acceleration = settings.Acceleration;
+            kcc->MaxSpeed = settings.BaseSpeed;
         }
     }
 }
