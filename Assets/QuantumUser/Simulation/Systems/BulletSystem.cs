@@ -22,6 +22,10 @@ namespace Quantum
             var nextPosition = filter.Bullet->Direction * filter.Bullet->Speed * f.DeltaTime;
             if (HandleCollisions(f, filter, nextPosition, out EntityRef hitEntity))
             {
+                if(f.Unsafe.TryGetPointer<Damageable>(hitEntity, out Damageable* damageable))
+                {
+                    f.Signals.OnDamageableHit(hitEntity, filter.Bullet->Damage, damageable);
+                }
                 f.Destroy(filter.Entity);
                 return;
             }
