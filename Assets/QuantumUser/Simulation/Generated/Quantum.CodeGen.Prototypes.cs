@@ -50,14 +50,52 @@ namespace Quantum.Prototypes {
   #endif //;
   
   [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.Bullet))]
+  public unsafe class BulletPrototype : ComponentPrototype<Quantum.Bullet> {
+    public MapEntityId Owner;
+    public FP Damage;
+    public FP Speed;
+    public FP Lifecycle;
+    public FPVector2 Direction;
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.Bullet component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.Bullet result, in PrototypeMaterializationContext context = default) {
+        PrototypeValidator.FindMapEntity(this.Owner, in context, out result.Owner);
+        result.Damage = this.Damage;
+        result.Speed = this.Speed;
+        result.Lifecycle = this.Lifecycle;
+        result.Direction = this.Direction;
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.Grass))]
+  public unsafe partial class GrassPrototype : ComponentPrototype<Quantum.Grass> {
+    [HideInInspector()]
+    public Int32 _empty_prototype_dummy_field_;
+    partial void MaterializeUser(Frame frame, ref Quantum.Grass result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.Grass component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.Grass result, in PrototypeMaterializationContext context = default) {
+        MaterializeUser(frame, ref result, in context);
+    }
+  }
+  [System.SerializableAttribute()]
   [Quantum.Prototypes.Prototype(typeof(Quantum.Input))]
   public unsafe partial class InputPrototype : StructPrototype {
     public FPVector2 Direction;
     public FPVector2 MousePosition;
+    public Button Fire;
     partial void MaterializeUser(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context);
     public void Materialize(Frame frame, ref Quantum.Input result, in PrototypeMaterializationContext context = default) {
         result.Direction = this.Direction;
         result.MousePosition = this.MousePosition;
+        result.Fire = this.Fire;
         MaterializeUser(frame, ref result, in context);
     }
   }
@@ -147,6 +185,23 @@ namespace Quantum.Prototypes {
             list.Add(tmp);
           }
         }
+    }
+  }
+  [System.SerializableAttribute()]
+  [Quantum.Prototypes.Prototype(typeof(Quantum.Weapon))]
+  public unsafe partial class WeaponPrototype : ComponentPrototype<Quantum.Weapon> {
+    public FP Cooldown;
+    public AssetRef<WeaponData> WeaponData;
+    partial void MaterializeUser(Frame frame, ref Quantum.Weapon result, in PrototypeMaterializationContext context);
+    public override Boolean AddToEntity(FrameBase f, EntityRef entity, in PrototypeMaterializationContext context) {
+        Quantum.Weapon component = default;
+        Materialize((Frame)f, ref component, in context);
+        return f.Set(entity, component) == SetResult.ComponentAdded;
+    }
+    public void Materialize(Frame frame, ref Quantum.Weapon result, in PrototypeMaterializationContext context = default) {
+        result.Cooldown = this.Cooldown;
+        result.WeaponData = this.WeaponData;
+        MaterializeUser(frame, ref result, in context);
     }
   }
 }

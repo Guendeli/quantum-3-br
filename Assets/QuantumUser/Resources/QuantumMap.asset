@@ -961,6 +961,11 @@ MonoBehaviour:
   - Components:
     - rid: 1333536200937439232
     - rid: 1333536200937439233
+  - Components:
+    - rid: 6486802442745806848
+    - rid: 6486802442745806849
+    - rid: 6486802442745806850
+    - rid: 6486802442745806851
   SerializedTriangleDataUncompressedSize: 452
   references:
     version: 2
@@ -1020,6 +1025,62 @@ MonoBehaviour:
           RawValue: 0
     - rid: 5335220950755442689
       type: {class: SpawnPointPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
+      data:
+        _empty_prototype_dummy_field_: 0
+    - rid: 6486802442745806848
+      type: {class: Transform2DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        Position:
+          X:
+            RawValue: 701235
+          Y:
+            RawValue: -1173094
+        Rotation:
+          RawValue: 0
+    - rid: 6486802442745806849
+      type: {class: PhysicsCollider2DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        ShapeConfig:
+          ShapeType: 4
+          PolygonCollider:
+            Id:
+              Value: 0
+          CircleRadius:
+            RawValue: 0
+          CapsuleSize:
+            X:
+              RawValue: 0
+            Y:
+              RawValue: 0
+          EdgeExtent:
+            RawValue: 0
+          BoxExtents:
+            X:
+              RawValue: 655360
+            Y:
+              RawValue: 655360
+          PositionOffset:
+            X:
+              RawValue: -3932
+            Y:
+              RawValue: 22282
+          RotationOffset:
+            RawValue: 0
+          UserTag: 0
+          IsPersistent: 1
+          CompoundShapes: []
+        Layer: 0
+        IsTrigger: 1
+        PhysicsMaterial:
+          Id:
+            Value: 0
+    - rid: 6486802442745806850
+      type: {class: PhysicsCallbacks2DPrototype, ns: Quantum.Prototypes, asm: Quantum.Engine}
+      data:
+        CallbackFlags:
+          Value: 0
+    - rid: 6486802442745806851
+      type: {class: GrassPrototype, ns: Quantum.Prototypes, asm: Quantum.Simulation}
       data:
         _empty_prototype_dummy_field_: 0
     - rid: 7818933562312228864

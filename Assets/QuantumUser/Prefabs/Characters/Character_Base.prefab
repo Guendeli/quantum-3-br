@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 1893124042535376262}
   - component: {fileID: -5651881994360942905}
   - component: {fileID: 8029462409513002009}
+  - component: {fileID: -4971669880164593848}
   m_Layer: 6
   m_Name: Character_Base
   m_TagString: Untagged
@@ -188,19 +189,19 @@ MonoBehaviour:
     PositionOffset:
       RawValue: 0
   PhysicsCollider:
-    IsEnabled: 0
+    IsEnabled: 1
     IsTrigger: 0
     Material:
       Id:
         Value: 0
     SourceCollider: {fileID: 0}
     Shape2D:
-      ShapeType: 0
+      ShapeType: 1
       PolygonCollider:
         Id:
           Value: 0
       CircleRadius:
-        RawValue: 0
+        RawValue: 65536
       CapsuleSize:
         X:
           RawValue: 0
@@ -258,9 +259,9 @@ MonoBehaviour:
     LayerSource: 0
     Layer: 6
     CallbackFlags:
-      Value: 0
+      Value: 3456
   PhysicsBody:
-    IsEnabled: 0
+    IsEnabled: 1
     Config2D: 116
     Config3D: 58
     RotationFreeze: 0
@@ -283,9 +284,9 @@ MonoBehaviour:
       Z:
         RawValue: 0
     GravityScale:
-      _hasValue: 0
+      _hasValue: 1
       _value:
-        RawValue: 65536
+        RawValue: 0
   NavMeshPathfinder:
     IsEnabled: 0
     NavMeshAgentConfig:
@@ -334,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0008c51fe3af00b4da5d44f02d9b3dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BindBehaviour: 0
+  BindBehaviour: 1
   ManualDisposal: 0
   ViewFlags: 0
   InterpolationMode: 0
@@ -403,6 +404,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_animator: {fileID: 534198499139429989}
+  m_overheadUI: {fileID: 1892350581194458970}
+--- !u!114 &-4971669880164593848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326267824891306075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619d5b16143388240855eecd406bb974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prototype:
+    Cooldown:
+      RawValue: 0
+    WeaponData:
+      Id:
+        Value: 493013111281051198
 --- !u!1 &1739315570316238824
 GameObject:
   m_ObjectHideFlags: 0
