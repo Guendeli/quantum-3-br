@@ -19,7 +19,7 @@ MonoBehaviour:
   Damage:
     RawValue: 1310720
   Speed:
-    RawValue: 655360
+    RawValue: 2621440
   Lifetime:
     RawValue: 196608
   Bullet: {fileID: 3097001405596171208, guid: ca76ff2043e8e2c40b9ef218fb35a560, type: 3}

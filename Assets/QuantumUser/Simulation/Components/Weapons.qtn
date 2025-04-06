@@ -10,6 +10,7 @@ component Bullet
     FP Damage;
     FP Speed;
     FP Lifecycle;
+    FP HeightOffset;
     FPVector2 Direction;
 }
 

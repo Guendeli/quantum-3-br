@@ -55,6 +55,7 @@ namespace Quantum.Prototypes.Unity {
     public FP Damage;
     public FP Speed;
     public FP Lifecycle;
+    public FP HeightOffset;
     public FPVector2 Direction;
     partial void ConvertUser(Quantum.QuantumEntityPrototypeConverter converter, ref Quantum.Prototypes.BulletPrototype prototype);
     public override Quantum.Prototypes.BulletPrototype Convert(Quantum.QuantumEntityPrototypeConverter converter) {
@@ -63,6 +64,7 @@ namespace Quantum.Prototypes.Unity {
       converter.Convert(this.Damage, out result.Damage);
       converter.Convert(this.Speed, out result.Speed);
       converter.Convert(this.Lifecycle, out result.Lifecycle);
+      converter.Convert(this.HeightOffset, out result.HeightOffset);
       converter.Convert(this.Direction, out result.Direction);
       ConvertUser(converter, ref result);
       return result;
