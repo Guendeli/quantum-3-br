@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 8029462409513002009}
   - component: {fileID: -4971669880164593848}
   - component: {fileID: -8800096266552075699}
+  - component: {fileID: 359824668726226466}
   m_Layer: 6
   m_Name: Character_Base
   m_TagString: Untagged
@@ -406,6 +407,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_animator: {fileID: 534198499139429989}
   m_overheadUI: {fileID: 1892350581194458970}
+  m_playerNameText: {fileID: 1447206199820168171}
+  m_animSpeedMultiplier: 1.5
 --- !u!114 &-4971669880164593848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,6 +445,19 @@ MonoBehaviour:
     DamageableData:
       Id:
         Value: 529671821647414176
+--- !u!114 &359824668726226466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326267824891306075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc8f2b98edbd604c87c58e18f7f34c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthImage: {fileID: 1497564469917106863}
 --- !u!1 &1739315570316238824
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +517,7 @@ GameObject:
   - component: {fileID: 5844126019847679880}
   - component: {fileID: 4370682288682822821}
   - component: {fileID: 9085244594456279735}
+  - component: {fileID: 8814644997689375888}
   m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
@@ -592,6 +609,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8814644997689375888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892350581194458970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2797f003ac263440b1844e69110ba89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4650006189429459219
 GameObject:
   m_ObjectHideFlags: 0

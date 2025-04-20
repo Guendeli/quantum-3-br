@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Deterministic;
 using Quantum;
+using Quantum.Utils;
+using TMPro;
 using UnityEngine;
 using Input = Quantum.Input;
 
@@ -13,6 +15,8 @@ public unsafe class PlayerView : QuantumEntityViewComponent
 {
     [SerializeField] private Animator m_animator;
     [SerializeField] private GameObject m_overheadUI;
+    [SerializeField] private TMP_Text m_playerNameText;
+    [SerializeField, Range(1,2)] private float m_animSpeedMultiplier = 1.5f;
     private Renderer[] m_Renderers;
     private bool m_IsLocalPlayer;
     
@@ -28,7 +32,10 @@ public unsafe class PlayerView : QuantumEntityViewComponent
 
     public override void OnActivate(Frame frame)
     {
-        m_IsLocalPlayer = _game.PlayerIsLocal(frame.Get<PlayerLink>(EntityRef).Player);
+        PlayerLink playerLink = frame.Get<PlayerLink>(EntityRef);
+        m_IsLocalPlayer = _game.PlayerIsLocal(playerLink.Player);
+        var playerData = frame.GetPlayerData(playerLink.Player);
+        m_playerNameText.text = playerData.PlayerNickname;
         var layer = UnityEngine.LayerMask.NameToLayer(m_IsLocalPlayer ? "Player_Local" : "Player_Remote");
 
         foreach (Renderer renderer in m_Renderers)
@@ -88,11 +95,12 @@ public unsafe class PlayerView : QuantumEntityViewComponent
             return;
         
         Input* input = PredictedFrame.GetPlayerInput(PredictedFrame.Get<PlayerLink>(EntityRef).Player);
-        KCC kcc = PredictedFrame.Get<KCC>(EntityRef);
-        FPVector2 velocity = kcc.Velocity;
+
+        var currentrotation = PredictedFrame.Get<Transform2D>(EntityRef).Rotation;
+        var rotation = input->Direction.Rotate(-currentrotation).ToUnityVector2() * m_animSpeedMultiplier;
         
-        m_animator.SetFloat(PARAM_MOVE_X, velocity.X.AsFloat);
-        m_animator.SetFloat(PARAM_MOVE_Z, velocity.Y.AsFloat);
+        m_animator.SetFloat(PARAM_MOVE_X, rotation.x);
+        m_animator.SetFloat(PARAM_MOVE_Z, rotation.y);
     }
 
     public override void OnDeactivate()

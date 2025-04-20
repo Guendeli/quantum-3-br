@@ -5,3 +5,10 @@ component Damageable
 }
 
 signal OnDamageableHit(EntityRef target, EntityRef source, FP damage, Damageable* damageable);
+
+event OnDamageHit
+{
+     EntityRef entityRef;
+     FP maxHealth;
+     FP currentHealth;
+}

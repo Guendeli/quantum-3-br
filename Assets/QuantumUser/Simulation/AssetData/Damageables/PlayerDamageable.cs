@@ -10,7 +10,10 @@ namespace Quantum
             if (damageable->Health <= FP._0)
             {
                 frame.Destroy(target);
+                return;
             }
+            
+            frame.Events.OnDamageHit(target, MaxHealth, damageable->Health); 
         }
     }
 }
