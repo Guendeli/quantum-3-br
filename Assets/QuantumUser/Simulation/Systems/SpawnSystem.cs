@@ -39,7 +39,7 @@ namespace Quantum
                 }
             }
 
-            int randomIndex = frame.RNG->Next(0, availableSpawnPoints.Count); // Deterministic RNG as the seed is shared among all the clients
+            int randomIndex = frame.RNG->Next(0, availableSpawnPoints.Count); // Deterministic RNG with the fair roll of a dice
             EntityRef spawnPoint = availableSpawnPoints[randomIndex];
             Transform2D transform2D = frame.Get<Transform2D>(spawnPoint);
             Transform2D* playerTransform = frame.Unsafe.GetPointer<Transform2D>(playerEntity);

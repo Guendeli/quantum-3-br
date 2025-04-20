@@ -8,8 +8,10 @@ namespace Quantum
 {
     using Photon.Deterministic;
 
-    public class DamageableData : AssetObject
+    public unsafe abstract class DamageableBase : AssetObject
     {
         public FP MaxHealth;
+
+        public abstract void DamageableHit(Frame frame, EntityRef target, EntityRef source, FP damage, Damageable* damageable);
     }
 }

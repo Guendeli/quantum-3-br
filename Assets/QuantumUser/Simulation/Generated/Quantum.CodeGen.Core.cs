@@ -554,7 +554,7 @@ namespace Quantum {
     [FieldOffset(8)]
     public FP Health;
     [FieldOffset(0)]
-    public AssetRef<DamageableData> DamageableData;
+    public AssetRef<DamageableBase> DamageableData;
     public override Int32 GetHashCode() {
       unchecked { 
         var hash = 21187;
@@ -712,7 +712,7 @@ namespace Quantum {
     }
   }
   public unsafe partial interface ISignalOnDamageableHit : ISignal {
-    void OnDamageableHit(Frame f, EntityRef damageableEntity, FP damage, Damageable* damageable);
+    void OnDamageableHit(Frame f, EntityRef target, EntityRef source, FP damage, Damageable* damageable);
   }
   public unsafe partial interface ISignalCreateBullet : ISignal {
     void CreateBullet(Frame f, EntityRef Owner, WeaponData WeaponData);
@@ -813,12 +813,12 @@ namespace Quantum {
       Physics3D.Init(_globals->PhysicsState3D.MapStaticCollidersState.TrackedMap);
     }
     public unsafe partial struct FrameSignals {
-      public void OnDamageableHit(EntityRef damageableEntity, FP damage, Damageable* damageable) {
+      public void OnDamageableHit(EntityRef target, EntityRef source, FP damage, Damageable* damageable) {
         var array = _f._ISignalOnDamageableHitSystems;
         for (Int32 i = 0; i < array.Length; ++i) {
           var s = array[i];
           if (_f.SystemIsEnabledInHierarchy((SystemBase)s)) {
-            s.OnDamageableHit(_f, damageableEntity, damage, damageable);
+            s.OnDamageableHit(_f, target, source, damage, damageable);
           }
         }
       }
